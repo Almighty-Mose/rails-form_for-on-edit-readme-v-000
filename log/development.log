@@ -883,3 +883,23 @@ ActionController::RoutingError (No route matches [GET] "/posts/1/edit"):
   Rendered /usr/local/rvm/gems/ruby-2.3.1/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
   Rendered /usr/local/rvm/gems/ruby-2.3.1/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.9ms)
   Rendered /usr/local/rvm/gems/ruby-2.3.1/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (79.4ms)
+
+
+Started GET "/posts/1/edit" for 24.56.5.133 at 2018-06-29 16:48:08 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered posts/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 291ms (Views: 255.8ms | ActiveRecord: 0.6ms)
+
+
+Started PATCH "/posts/1" for 24.56.5.133 at 2018-06-29 16:48:21 +0000
+Processing by PostsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YET4X8eJvylArstL7jhaKM+/sA4VnlgtvKMTxGcehHH96JvaRmqH4LHAO4BMBZxFbSZWC42kqTLVyNlm8tS8og==", "post"=>{"title"=>"Rails Introduction Quiz", "description"=>"jkl;jkl;jkl;"}, "commit"=>"Update Post", "id"=>"1"}
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "posts" SET "description" = ?, "updated_at" = ? WHERE "posts"."id" = ?[0m  [["description", "jkl;jkl;jkl;"], ["updated_at", "2018-06-29 16:48:21.476648"], ["id", 1]]
+  [1m[35m (51.1ms)[0m  commit transaction
+Redirected to http://165.227.16.205:45650/posts/1
+Completed 302 Found in 56ms (ActiveRecord: 51.6ms)
